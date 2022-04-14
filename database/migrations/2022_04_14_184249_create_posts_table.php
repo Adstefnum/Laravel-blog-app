@@ -19,7 +19,9 @@ return new class extends Migration
             $table->string('slug');
             $table->longText('body');
             $table->string('cover_image','2048')->nullable();
-            $table->foreignId('user_id')->constrained('users');
+
+            $table->uuid('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
           
         });
     }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Trait\Uuid;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -12,6 +13,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
+    use Uuid
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
@@ -23,6 +25,9 @@ class User extends Authenticatable
      *
      * @var string[]
      */
+
+    public $incrementing = false;
+    protected $keyType = 'uuid';
     protected $fillable = [
         'name',
         'email',
@@ -58,4 +63,8 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function posts(){
+            return this->hasMany(Post::class)
+    }
 }
