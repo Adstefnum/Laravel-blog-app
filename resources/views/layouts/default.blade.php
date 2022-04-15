@@ -34,7 +34,11 @@
 
         </div>
 </div>
-@yield('content')
+           <div class="container">
+                @include('includes.messages')
+                @yield('content')
+            </div>
+        </div>
     </body>
 </html>
 

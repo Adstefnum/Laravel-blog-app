@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
-        public function show(){
-                return view();
+        public function post_detail(){
+                    return view();
         }
 
         public function create(){
