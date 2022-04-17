@@ -1,15 +1,24 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <x-jet-welcome />
+
+@section('content')
+<h1>Posts</h1>
+    @if(count($posts) > 0)
+        @foreach($posts as $post)
+            <div class="well">
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        <img style="width:100%" src="/storage/cover_images/{{$post->cover_image}}">
+                    </div>
+                    <div class="col-md-8 col-sm-8">
+                        <h3><a href="/posts/{{$post->id}}">{{$post->title}}</a></h3>
+                        <small>Written on {{$post->created_at}} by {{$post->user->name}}</small>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</x-app-layout>
+        @endforeach
+        {{$posts->links()}}
+    @else
+        <p>No posts found</p>
+    @endif
+@endsection
