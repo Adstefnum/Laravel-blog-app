@@ -3,7 +3,8 @@
 
 @section('content')
 <h1>Posts</h1>
-    @if(count($posts) > 0)
+<button onclick="location.href='{{ route('create')  }}'"> Create Post</button>
+@if(count($posts) > 0)
         @foreach($posts as $post)
             <div class="well">
                 <div class="row">
@@ -17,7 +18,6 @@
                 </div>
             </div>
         @endforeach
-        {{$posts->links()}}
     @else
         <p>No posts found</p>
     @endif

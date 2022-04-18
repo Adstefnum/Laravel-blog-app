@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PostsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +25,8 @@ Route::middleware([
         Route::get('/dashboard',[DashboardController::class,'dashboard'])
             ->name('dashboard');
     });
+Route::get('/create', [PostsController::class, 'create'])->name('create');
+Route::post('/store', [PostsController::class, 'store'])->name('store');
 //Route::middleware([
 //    'auth:sanctum',
 //    config('jetstream.auth_session'),
